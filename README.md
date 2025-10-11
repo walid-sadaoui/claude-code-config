@@ -1,151 +1,151 @@
 # Claude Code Configuration
 
-Ce repository contient toutes mes configurations personnalisées pour Claude Code, incluant des commandes slash personnalisées, des agents spécialisés, et des paramètres globaux.
+This repository contains my personal Claude Code configurations, including custom slash commands, specialized agents, and global settings.
 
-## Table des matières
+## Table of Contents
 
-- [Structure du repository](#structure-du-repository)
-- [Approches d'installation](#approches-dinstallation)
-- [Installation rapide](#installation-rapide)
-- [Utilisation](#utilisation)
-- [Contenu](#contenu)
-- [Gestion de la configuration](#gestion-de-la-configuration)
+- [Repository Structure](#repository-structure)
+- [Installation Approaches](#installation-approaches)
+- [Quick Installation](#quick-installation)
+- [Usage](#usage)
+- [Contents](#contents)
+- [Configuration Management](#configuration-management)
 
-## Structure du repository
+## Repository Structure
 
 ```
 .
 ├── .claude/
-│   ├── commands/        # Commandes slash personnalisées
-│   ├── agents/          # Agents spécialisés personnalisés
-│   └── styles/          # Styles de sortie personnalisés (si configurés)
-├── install.sh           # Script d'installation Unix (macOS/Linux)
-├── install.ps1          # Script d'installation Windows (PowerShell)
-├── example.gitignore    # Exemple de .gitignore pour vos projets
-└── settings.json        # Fichier de configuration principal
+│   ├── commands/        # Custom slash commands
+│   ├── agents/          # Custom specialized agents
+│   └── styles/          # Custom output styles (if configured)
+├── install.sh           # Unix installation script (macOS/Linux)
+├── install.ps1          # Windows installation script (PowerShell)
+├── example.gitignore    # Example .gitignore for your projects
+└── settings.json        # Main configuration file
 ```
 
-## Approches d'installation
+## Installation Approaches
 
-Claude Code supporte une hiérarchie de configuration. Choisissez l'approche qui correspond à vos besoins :
+Claude Code supports a configuration hierarchy. Choose the approach that fits your needs:
 
-### 1. Installation Globale (Recommandée pour la plupart des cas)
+### 1. Global Installation (Recommended for most cases)
 
-**Quand l'utiliser :**
-- Vous voulez la même configuration dans tous vos projets
-- Vous ne voulez pas gérer de configuration par projet
-- Solution la plus simple et automatique
+**When to use:**
+- You want the same configuration across all your projects
+- You don't want to manage per-project configuration
+- Simplest and most automatic solution
 
-**Avantages :**
-- ✅ Aucun fichier dans vos projets
-- ✅ Automatiquement disponible partout
-- ✅ Un seul endroit à maintenir
-- ✅ Aucune modification des repositories existants
+**Advantages:**
+- ✅ No files added to your projects
+- ✅ Automatically available everywhere
+- ✅ Single place to maintain
+- ✅ No modification of existing repositories
 
-**Inconvénients :**
-- ⚠️ Affecte tous les projets sans distinction
+**Disadvantages:**
+- ⚠️ Affects all projects without distinction
 
-### 2. Installation Par Projet (Pour une configuration sélective)
+### 2. Per-Project Installation (For selective configuration)
 
-**Quand l'utiliser :**
-- Vous voulez choisir quels projets utilisent cette config
-- Certains projets ont besoin de configurations différentes
-- Vous travaillez sur des projets avec des besoins variés
+**When to use:**
+- You want to choose which projects use this config
+- Some projects need different configurations
+- You work on projects with varying requirements
 
-**Avantages :**
-- ✅ Contrôle granulaire par projet
-- ✅ Pas de duplication des fichiers (via symlink)
-- ✅ Configuration partagée mais activation sélective
-- ✅ Compatible avec des overrides locaux
+**Advantages:**
+- ✅ Granular control per project
+- ✅ No file duplication (via symlink)
+- ✅ Shared configuration with selective activation
+- ✅ Compatible with local overrides
 
-**Inconvénients :**
-- ⚠️ Nécessite une installation par projet (mais automatisée via script)
-- ⚠️ Besoin d'ajouter `.claude` au `.gitignore`
+**Disadvantages:**
+- ⚠️ Requires per-project installation (but automated via script)
+- ⚠️ Need to add `.claude` to `.gitignore`
 
-### 3. Approche Hybride (Maximum de flexibilité)
+### 3. Hybrid Approach (Maximum flexibility)
 
-**Quand l'utiliser :**
-- Vous voulez une configuration de base partout
-- Certains projets nécessitent des customisations spécifiques
+**When to use:**
+- You want a base configuration everywhere
+- Some projects require specific customizations
 
-**Comment ça fonctionne :**
-- Installation globale comme base
-- Ajout de `.claude/settings.local.json` dans les projets qui nécessitent des overrides
-- Les paramètres locaux fusionnent avec / surchargent les paramètres globaux
+**How it works:**
+- Global installation as baseline
+- Add `.claude/settings.local.json` in projects requiring overrides
+- Local settings merge with / override global settings
 
-## Installation rapide
+## Quick Installation
 
-### 1. Cloner ce repository
+### 1. Clone this repository
 
 ```bash
-# Choisissez l'emplacement de votre choix
-git clone <votre-url-repo> ~/claude-code-config
+# Choose your preferred location
+git clone <your-repo-url> ~/claude-code-config
 cd ~/claude-code-config
 ```
 
-### 2. Lancer le script d'installation
+### 2. Run the installation script
 
-#### Sur Windows (PowerShell en mode administrateur)
+#### On Windows (PowerShell as administrator)
 
 ```powershell
-# Menu interactif
+# Interactive menu
 .\install.ps1
 
-# OU installation directe
-.\install.ps1 -Mode global    # Installation globale
-.\install.ps1 -Mode project   # Installation pour le projet courant
+# OR direct installation
+.\install.ps1 -Mode global    # Global installation
+.\install.ps1 -Mode project   # Current project installation
 ```
 
-#### Sur macOS/Linux
+#### On macOS/Linux
 
 ```bash
-# Menu interactif
+# Interactive menu
 ./install.sh
 
-# OU installation directe
-./install.sh global    # Installation globale
-./install.sh project   # Installation pour le projet courant
+# OR direct installation
+./install.sh global    # Global installation
+./install.sh project   # Current project installation
 ```
 
-### 3. (Optionnel) Pour l'installation par projet
+### 3. (Optional) For per-project installation
 
-Si vous avez choisi l'installation par projet, ajoutez `.claude` à votre `.gitignore` :
+If you chose per-project installation, add `.claude` to your `.gitignore`:
 
 ```bash
-# Copier l'exemple dans votre projet
+# Copy the example to your project
 cat example.gitignore >> .gitignore
 ```
 
-## Utilisation
+## Usage
 
-### Installation globale
+### Global installation
 
-Après l'installation globale, vos configurations sont automatiquement disponibles dans tous vos projets. Aucune action supplémentaire nécessaire.
+After global installation, your configurations are automatically available in all your projects. No additional action required.
 
-### Installation par projet
+### Per-project installation
 
-Pour ajouter la configuration à un nouveau projet :
+To add the configuration to a new project:
 
 ```bash
-cd /chemin/vers/votre/projet
+cd /path/to/your/project
 ~/claude-code-config/install.sh project   # Unix
-# OU
+# OR
 ~/claude-code-config/install.ps1 -Mode project   # Windows
 ```
 
-N'oubliez pas d'ajouter `.claude` à votre `.gitignore` !
+Don't forget to add `.claude` to your `.gitignore`!
 
-### Overrides locaux (Approche hybride)
+### Local overrides (Hybrid approach)
 
-Pour customiser la configuration dans un projet spécifique tout en conservant la base globale :
+To customize configuration in a specific project while keeping the global baseline:
 
 ```bash
-# Dans votre projet
+# In your project
 mkdir -p .claude
 nano .claude/settings.local.json
 ```
 
-Exemple de `settings.local.json` :
+Example `settings.local.json`:
 ```json
 {
   "outputStyle": "compact",
@@ -155,48 +155,48 @@ Exemple de `settings.local.json` :
 }
 ```
 
-Les paramètres locaux fusionnent avec et surchargent les paramètres globaux.
+Local settings merge with and override global settings.
 
-## Contenu
+## Contents
 
-### Commandes Slash
+### Slash Commands
 
-Les commandes slash personnalisées sont stockées dans `.claude/commands/`. Chaque fichier `.md` devient une commande slash.
+Custom slash commands are stored in `.claude/commands/`. Each `.md` file becomes a slash command.
 
-**Exemple :** `.claude/commands/review.md` devient `/review`
+**Example:** `.claude/commands/review.md` becomes `/review`
 
-**Commandes disponibles :**
-- `/tdd` - Utilise l'agent TDD Clean Architecture pour développement test-driven
-- `/doc` - Organise et structure des notes en documentation markdown détaillée
+**Available commands:**
+- `/tdd` - Uses the TDD Clean Architecture agent for test-driven development
+- `/doc` - Organizes and structures notes into detailed markdown documentation
 
-### Agents Personnalisés
+### Custom Agents
 
-Les agents spécialisés sont définis dans `.claude/agents/`. Ces agents possèdent des compétences et contextes spécifiques.
+Specialized agents are defined in `.claude/agents/`. These agents have specific skills and contexts.
 
-**Agents disponibles :**
-- `tdd-clean-architecture-expert` - Expert en Clean Architecture et TDD pour Node.js/TypeScript
-- `documentation-organizer` - Expert en organisation de notes et rédaction de documentation
+**Available agents:**
+- `tdd-clean-architecture-expert` - Expert in Clean Architecture and TDD for Node.js/TypeScript
+- `documentation-organizer` - Expert in organizing notes and writing documentation
 
-### Styles de Sortie
+### Output Styles
 
-Les styles personnalisés dans `.claude/styles/` définissent comment Claude Code affiche ses réponses (format, verbosité, etc.).
+Custom styles in `.claude/styles/` define how Claude Code displays its responses (format, verbosity, etc.).
 
 ### Hooks
 
-Les scripts de hooks permettent d'exécuter des commandes shell en réponse à des événements (avant commit, après édition, etc.). Ils sont configurés dans `settings.json`.
+Hook scripts allow executing shell commands in response to events (pre-commit, post-edit, etc.). They are configured in `settings.json`.
 
-## Gestion de la configuration
+## Configuration Management
 
-### Mettre à jour votre configuration
+### Update your configuration
 
 ```bash
 cd ~/claude-code-config
 git pull
 ```
 
-Les changements sont immédiatement disponibles (global) ou au prochain lancement de Claude Code (par projet).
+Changes are immediately available (global) or at next Claude Code launch (per-project).
 
-### Sauvegarder vos modifications
+### Save your modifications
 
 ```bash
 cd ~/claude-code-config
@@ -205,9 +205,9 @@ git commit -m "feat: add new custom command"
 git push
 ```
 
-### Désinstallation
+### Uninstallation
 
-#### Installation globale
+#### Global installation
 
 ```bash
 # Unix
@@ -217,26 +217,26 @@ rm ~/.claude
 Remove-Item -Path "$env:USERPROFILE\.claude" -Force
 ```
 
-#### Installation par projet
+#### Per-project installation
 
 ```bash
-# Dans le projet concerné
+# In the relevant project
 rm .claude
 ```
 
-## Hiérarchie de configuration Claude Code
+## Claude Code Configuration Hierarchy
 
-Claude Code fusionne les configurations selon cette hiérarchie (du plus prioritaire au moins prioritaire) :
+Claude Code merges configurations according to this hierarchy (from highest to lowest priority):
 
-1. **Politiques d'entreprise** (si configurées, non modifiables)
-2. **Arguments en ligne de commande**
-3. **Configuration locale projet** : `.claude/settings.local.json`
-4. **Configuration partagée projet** : `.claude/settings.json`
-5. **Configuration utilisateur globale** : `~/.claude/settings.json`
+1. **Enterprise policies** (if configured, non-modifiable)
+2. **Command line arguments**
+3. **Local project configuration**: `.claude/settings.local.json`
+4. **Shared project configuration**: `.claude/settings.json`
+5. **Global user configuration**: `~/.claude/settings.json`
 
-Les paramètres plus spécifiques ajoutent ou surchargent les paramètres plus larges.
+More specific settings add to or override broader settings.
 
-## Ressources
+## Resources
 
 - [Claude Code Documentation](https://docs.claude.com/en/docs/claude-code)
 - [Custom Commands](https://docs.claude.com/en/docs/claude-code/custom-commands)
