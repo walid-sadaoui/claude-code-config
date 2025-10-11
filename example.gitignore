@@ -1,0 +1,17 @@
+# Claude Code Configuration
+# -------------------------
+# If you're using project-level installation (symlink .claude directory),
+# add this line to your project's .gitignore file:
+
+.claude
+
+# If you prefer to commit some project-specific configurations while
+# ignoring others, you can be more selective:
+#
+# .claude/commands/
+# .claude/agents/
+# .claude/styles/
+# !.claude/settings.local.json
+
+# Note: This is not needed if you're using global installation,
+# as the .claude directory won't exist in your project root.
